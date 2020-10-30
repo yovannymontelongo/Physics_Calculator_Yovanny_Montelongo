@@ -7,7 +7,7 @@
 using namespace std;
 
 double calculateWeight(double mass) {
-	return (mass * 9.80665);
+	return (mass * 9.81);
 }
 
 double calculateMomentum(double mass, double velocity) {
@@ -42,10 +42,7 @@ void submenu(char chosenItem) {
 	string massUnit = "";
 	double acceleration = 0.0;
 	string accelerationUnit = "";
-	//variables for momentum
-	//mass variables are being borrowed from newton's 2nd law to avoid recreating it
-	double velocity = 0.0;
-	string velocityUnit = "";
+	//variables for momentum are being borrowed from acceleration to avoid recreating it
 	//weight variables are being borrowed from newton's 2nd law to avoid recreating it
 
 	do {
@@ -55,13 +52,13 @@ void submenu(char chosenItem) {
 		//velocity was chosen
 		case 'a':
 			cout << "----Calculate Velocity----\n";
-			cout << "Enter the value for distance: ";
+			cout << "Enter the value for distance as a double: ";
 			distance = validateDouble(distance);
-			cout << "Enter the unit for distance: ";
+			cout << "Enter the unit for distance as a single word: ";
 			distanceUnit = validateString(distanceUnit);
-			cout << "Enter the value for time: ";
+			cout << "Enter the value for time as a double: ";
 			time = validateDouble(time);
-			cout << "Enter the unit for time: ";
+			cout << "Enter the unit for time as a single word: ";
 			timeUnit = validateString(timeUnit);
 
 			cout << "\nThe velocity for " << distance << "/" << time << " is: " << fixed << setprecision(4) << calculateVelocity(distance, time) << " " << distanceUnit << " / " << timeUnit;
@@ -70,16 +67,61 @@ void submenu(char chosenItem) {
 		//acceleration was chosen
 		case 'b':
 			cout << "----Calculate Acceleration----\n";
-			cout << "Enter the value for velocity: ";
+			cout << "Enter the value for velocity as a double: ";
 			velocity = validateDouble(velocity);
-			cout << "Enter the unit for velocity: ";
+			cout << "Enter the unit for velocity as a single word: ";
 			velocityUnit = validateString(velocityUnit);
-			cout << "Enter the value for time: ";
+			cout << "Enter the value for time as a double: ";
 			time = validateDouble(time);
-			cout << "Enter the unit for time: ";
+			cout << "Enter the unit for time as a single word: ";
 			timeUnit = validateString(timeUnit);
 
-			cout << "\nThe velocity for " << velocity << "/" << time << " is: " << fixed << setprecision(4) << calculateVelocity(velocity, time) << " " << velocityUnit << " / " << timeUnit;
+			cout << "\nThe velocity for " << velocity << "/" << time << " is: " << fixed << setprecision(4) << calculateAcceleration(velocity, time) << " " << velocityUnit << " / " << timeUnit;
+
+			break;
+		//motion was chosen
+		case 'c':
+			cout << "temporary menu c\n";
+			break;
+		//newton's 2nd law was chosen
+		case 'd':
+			cout << "----Calculate Newton's 2nd Law of Motion----\n";
+			cout << "Enter the value for mass as a double: ";
+			velocity = validateDouble(mass);
+			cout << "Enter the unit for mass as a single word: ";
+			velocityUnit = validateString(massUnit);
+			cout << "Enter the value for acceleration as a double: ";
+			time = validateDouble(acceleration);
+			cout << "Enter the unit for time as a single word: ";
+			timeUnit = validateString(accelerationUnit);
+
+			cout << "\nThe velocity for " << mass << "/" << acceleration << " is: " << fixed << setprecision(4) << calculateNewton(mass, acceleration) << " " << massUnit << " / " << accelerationUnit;
+
+			break;
+		//weight chosen
+		case 'e':
+			cout << "----Calculate Weight(on Earth)----\n";
+			cout << "Enter the value for mass as a double: ";
+			velocity = validateDouble(mass);
+			cout << "Enter the unit for mass as a single word: ";
+			velocityUnit = validateString(massUnit);
+
+			cout << "\nThe velocity for " << mass << "/" << "9.81 is: " << fixed << setprecision(4) << calculateWeight(mass) << " " << massUnit << " / m/s^2";
+
+			break;
+		//momentum was chosen
+		case 'f':
+			cout << "----Calculate Momentum----\n";
+			cout << "Enter the value for mass as a double: ";
+			velocity = validateDouble(mass);
+			cout << "Enter the unit for mass as a single word: ";
+			velocityUnit = validateString(massUnit);
+			cout << "Enter the value for velocity as a double: ";
+			time = validateDouble(velocity);
+			cout << "Enter the unit for time as a single word: ";
+			timeUnit = validateString(velocityUnit);
+
+			cout << "\nThe velocity for " << mass << "/" << velocity << " is: " << fixed << setprecision(4) << calculateMomentum(mass, velocity) << " " << massUnit << " / " << velocityUnit;
 
 			break;
 		default:
