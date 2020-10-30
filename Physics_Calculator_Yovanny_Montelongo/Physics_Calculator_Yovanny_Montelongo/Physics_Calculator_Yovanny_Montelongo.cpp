@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdlib.h>
+#include <iomanip>
 #include "Input_Validation_Extended.h"
 
 
@@ -26,9 +27,34 @@ double calculateAcceleration(double velocity, double time) {
 }
 
 void submenu(char chosenItem) {
+
+	double speed = 0.0;
+	string speedUnit = "";
+	double time = 0.0;
+	string timeUnit = "";
+
 	do {
 		
-		cout << chosenItem << " was chosen\n";
+		switch (chosenItem) {
+
+		case 'a':
+			cout << "----Calculate Velocity----\n";
+			cout << "Enter the value of speed: \n";
+			speed = validateDouble(speed);
+			cout << "Enter the unit for speed: \n";
+			speedUnit = validateString(speedUnit);
+			cout << "Enter the value of time: \n";
+			time = validateDouble(time);
+			cout << "Enter the unit for time: \n";
+			timeUnit = validateString(timeUnit);
+
+			cout << "\nThe velocity for " << speed << "*" << time << " is: " << setprecision(4) << calculateVelocity(speed, time) << speedUnit << " / " << timeUnit;
+
+			break;
+		default:
+			break;
+		}
+
 		cout << "to exit, enter 'x' or 'X'\n";
 		chosenItem = validateChar(chosenItem);
 
