@@ -5,20 +5,34 @@
 
 using namespace std;
 
-char menuSystem(char chosenItem) {
+double calculateWeight(double mass, string unit) {
+	return (mass * 9.80665);
+}
 
+double calculateMomentum(double mass, double velocity) {
+	return (mass * velocity);
+}
+
+double calculateNewton(double mass, double acceleration) {
+	return (mass * acceleration);
+}
+
+double calculateVelocity(double speed, double time) {
+	return (speed * time);
+}
+
+double calculateAcceleration(double velocity, double time) {
+	return (velocity * time);
+}
+
+void submenu(char chosenItem) {
 	do {
+		
+		cout << chosenItem << " was chosen\n";
+		cout << "to exit, enter 'x' or 'X'\n";
+		chosenItem = validateChar(chosenItem);
 
-		cout << "----Submenu " << chosenItem << "----\n";
-		cout << "you chose menu " << chosenItem << "\n";
-
-		char input = 'z';
-		cout << "to exit, enter 'e' or 'E'\n";
-		chosenItem = validateChar(input);
-
-	} while (chosenItem != 'e' && chosenItem != 'E');
-
-	return chosenItem;
+	} while (chosenItem != 'x' && chosenItem != 'X');
 }
 
 int main(){
@@ -28,19 +42,34 @@ int main(){
 	do {
 
 		cout << "----HOME MENU----\n";
-		cout << "a) enter menu a\n";
-		cout << "b) enter menu b\n";
+		cout << "a) Calculate Velocity\n";
+		cout << "b) Calculate Acceleration\n";
+		cout << "c) Calculate Motion\n";
+		cout << "d) Calculate Newton's 2nd Law of Motion\n";
+		cout << "e) Calculate Weight (on Earth)\n";
+		cout << "f) Calculate Momentum\n";
 
-		char input = 'z';
-		cout << "to exit, enter 'e' or 'E'\n";
-		menuSelectionChosen = validateChar(input);
+		cout << "to exit, enter 'x' or 'X'\n";
+		menuSelectionChosen = validateChar(menuSelectionChosen);
 
 		switch (menuSelectionChosen) {
 			case 'a':
-				menuSystem(menuSelectionChosen);
+				submenu('a');
 				break;
 			case 'b':
-				menuSystem(menuSelectionChosen);
+				submenu('b');
+				break;
+			case 'c':
+				submenu('c');
+				break;
+			case 'd':
+				submenu('d');
+				break;
+			case 'e':
+				submenu('e');
+				break;
+			case 'f':
+				submenu('g');
 				break;
 			default:
 				system("cls");
@@ -50,7 +79,7 @@ int main(){
 
 		system("cls");
 
-	} while (menuSelectionChosen != 'e' && menuSelectionChosen != 'E');
+	} while (menuSelectionChosen != 'x' && menuSelectionChosen != 'X');
 
 	system("cls");
 
