@@ -6,7 +6,7 @@
 
 using namespace std;
 
-double calculateWeight(double mass, string unit) {
+double calculateWeight(double mass) {
 	return (mass * 9.80665);
 }
 
@@ -18,44 +18,75 @@ double calculateNewton(double mass, double acceleration) {
 	return (mass * acceleration);
 }
 
-double calculateVelocity(double speed, double time) {
-	return (speed * time);
+double calculateVelocity(double distance, double time) {
+	return (distance / time);
 }
 
 double calculateAcceleration(double velocity, double time) {
-	return (velocity * time);
+	return (velocity / time);
 }
 
 void submenu(char chosenItem) {
 
-	double speed = 0.0;
-	string speedUnit = "";
+	//variables for velocity
+	double distance = 0.0;
+	string distanceUnit = "";
 	double time = 0.0;
 	string timeUnit = "";
+	//variables for acceleration
+	double velocity = 0.0;
+	string velocityUnit = "";
+	//time variables are being borrowed from velocity to avoid recreating it
+	//variables for newton's 2nd law of motion
+	double mass = 0.0;
+	string massUnit = "";
+	double acceleration = 0.0;
+	string accelerationUnit = "";
+	//variables for momentum
+	//mass variables are being borrowed from newton's 2nd law to avoid recreating it
+	double velocity = 0.0;
+	string velocityUnit = "";
+	//weight variables are being borrowed from newton's 2nd law to avoid recreating it
 
 	do {
 		
 		switch (chosenItem) {
 
+		//velocity was chosen
 		case 'a':
 			cout << "----Calculate Velocity----\n";
-			cout << "Enter the value of speed: \n";
-			speed = validateDouble(speed);
-			cout << "Enter the unit for speed: \n";
-			speedUnit = validateString(speedUnit);
-			cout << "Enter the value of time: \n";
+			cout << "Enter the value for distance: ";
+			distance = validateDouble(distance);
+			cout << "Enter the unit for distance: ";
+			distanceUnit = validateString(distanceUnit);
+			cout << "Enter the value for time: ";
 			time = validateDouble(time);
-			cout << "Enter the unit for time: \n";
+			cout << "Enter the unit for time: ";
 			timeUnit = validateString(timeUnit);
 
-			cout << "\nThe velocity for " << speed << "*" << time << " is: " << setprecision(4) << calculateVelocity(speed, time) << speedUnit << " / " << timeUnit;
+			cout << "\nThe velocity for " << distance << "/" << time << " is: " << fixed << setprecision(4) << calculateVelocity(distance, time) << " " << distanceUnit << " / " << timeUnit;
+
+			break;
+		//acceleration was chosen
+		case 'b':
+			cout << "----Calculate Acceleration----\n";
+			cout << "Enter the value for velocity: ";
+			velocity = validateDouble(velocity);
+			cout << "Enter the unit for velocity: ";
+			velocityUnit = validateString(velocityUnit);
+			cout << "Enter the value for time: ";
+			time = validateDouble(time);
+			cout << "Enter the unit for time: ";
+			timeUnit = validateString(timeUnit);
+
+			cout << "\nThe velocity for " << velocity << "/" << time << " is: " << fixed << setprecision(4) << calculateVelocity(velocity, time) << " " << velocityUnit << " / " << timeUnit;
 
 			break;
 		default:
 			break;
 		}
 
-		cout << "to exit, enter 'x' or 'X'\n";
+		cout << "\nEnter 'x' or 'X' to continue: ";
 		chosenItem = validateChar(chosenItem);
 
 	} while (chosenItem != 'x' && chosenItem != 'X');
